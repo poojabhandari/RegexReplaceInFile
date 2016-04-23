@@ -61,12 +61,12 @@ public class RegexTextReplacementInFiles {
 	}
 
 	private boolean isSingleGroupRegexPattern(String regexPattern2) {
-		int count = 0;
-		for (int i = 0; i < regexPattern2.length(); i++) {
-			if (regexPattern2.charAt(i) == '(')
-				count++;
-		}
-		if (count > 1) {
+	Pattern pattern = Pattern.compile(regexPattern2);
+        Matcher matcher = pattern.matcher("");
+
+        int groupCount = matcher.groupCount();
+        
+		if (groupCount > 1) {
 			System.out.println("ErrorMsg: more than 1 group in regexPattern");
 			return false;
 		} else
